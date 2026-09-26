@@ -7,10 +7,10 @@ This game was implemented by Rida Hashmi for ENSE 352 (Computer Systems Architec
 
 ## Hardware Requirements
 To run this game you will need the following:
-* Microcontroller – An STM32 Nucleo‑F103 board (or any STM32F103 with similar GPIO availability).
-* DIP switches – Four SPST DIP switches wired to the microcontroller’s GPIOB pins.
-* LEDs – Four LEDs connected to GPIOA and GPIOB pins via suitable resistors.
-* Wiring Equipment – wires to connect to the Nucleo-F103 board and the breadboard and a 10k pull-up resistor
+* **Microcontroller** – An STM32 Nucleo‑F103 board (or any STM32F103 with similar GPIO availability).
+* **DIP switches** – Four SPST DIP switches wired to the microcontroller’s GPIOB pins.
+* **LEDs** – Four LEDs connected to GPIOA and GPIOB pins via suitable resistors.
+* **Wiring Equipment** – wires to connect to the Nucleo-F103 board and the breadboard and a 10k pull-up resistor
 
 ## Software Requirements
 The code was uploaded to the board using Keil µVision 5.0.
@@ -27,16 +27,16 @@ The code was uploaded to the board using Keil µVision 5.0.
 
 ## Gameplay Overview
 When the board starts it generates a new four‑digit secret code. Each digit is a nibble between 0x0 and
-0xF (0–15). The player has up to 10 guesses to determine the secret.
+0xF (0–15). **The player has up to 10 guesses to determine the secret**.
 
 ## Entering a guess
-1. Prepare a digit – Position the four DIP switches to represent your guess nibble. The binary value
+1. **Prepare a digit** – Position the four DIP switches to represent your guess nibble. The binary value
 of the switches is read with PB8 as the least‑significant bit and PB4 as the most‑significant bit.
-2. Confirm the digit – Press the blue user button (PC13). The current LED pattern shows which
+2. **Confirm the digit** – Press the blue user button (PC13). The current LED pattern shows which
 digit index you are entering:
    * For the first digit (index 0) LED D3 is lit (1000), then the pattern builds up to 1111 for the
 fourth digit. This acts as a cursor showing which digit you are currently entering.
-3. Repeat – Enter all four digits one after the other. After each press, wait for the button to be
+3. **Repeat** – Enter all four digits one after the other. After each press, wait for the button to be
 released (debouncing occurs automatically).
    * For the first digit (index 0) LED D3 is lit (1000), then the pattern builds up to 1111 for the
 fourth digit. This acts as a cursor showing which digit you are currently entering.
@@ -44,29 +44,37 @@ fourth digit. This acts as a cursor showing which digit you are currently enteri
 ## Feedback Interpretation
 After you have confirmed all four digits, the program compares your guess with the secret code and
 provides feedback through the LEDs:
-* Solid LEDs (lit) – Indicate the number of digits that are correct and in the correct position. For
+* **Solid LEDs (lit)** – Indicate the number of digits that are correct and in the correct position. For
 example, two solid lights mean two of your four nibbles match exactly.
-* Blinking LEDs – Indicate the number of digits that are correct but in the wrong position. These
+* **Blinking LEDs** – Indicate the number of digits that are correct but in the wrong position. These
 LEDs blink on and off at a fixed rate. For example, if two LEDs are solid and one blinks, two
 digits are in the right place and one digit is present in the secret but in a different position.
 The game waits in this feedback state until you press the user button. Once pressed and released, the
 LEDs turn off and you may begin entering your next guess.
 
 ## Winning and losing
-* Win – If all four digits are correct in the correct positions, all LEDs blink together four times.
+* **Win** – If all four digits are correct in the correct positions, all LEDs blink together four times.
 Then the LEDs display your guess count in binary. Press the button once more to start a new
 round.
-* Lose – If you have not guessed the code within 10 attempts, a sweeping animation moves a single
+* **Lose** – If you have not guessed the code within 10 attempts, a sweeping animation moves a single
 lit LED from D3 to D0 four times. Afterwards the program flashes each digit of the secret code in
 sequence for approximately two seconds per digit, with the least significant bit on LED D0
 (which should be connected to PA0) and the most significant bit on LED D3 (which should be
 connected to PB0). Once the code has been displayed, press the button to begin a new round.
 
 Customisation and notes
-* Debugging – A hard‑coded secret can be uncommented in generate_code() in main.c to aid
+* **Debugging** – A hard‑coded secret can be uncommented in generate_code() in main.c to aid
 debugging and test the feedback. By default, the game uses a simple 32‑bit linear congruential
 generator to produce pseudorandom nibbles for the secret code.
-* Timing – The blink and delay loops use busy‑waits calibrated for a 72 MHz clock. If your board
+* **Timing** – The blink and delay loops use busy‑waits calibrated for a 72 MHz clock. If your board
 runs at a different speed you may need to adjust the delay_cycles() counts.
-* Safety – Always ensure appropriate current‑limiting resistors are used with LEDs and that the
+* **Safety** – Always ensure appropriate current‑limiting resistors are used with LEDs and that the
 DIP switches do not short the pins directly to ground or VDD.
+
+<img width="344" height="224" alt="image" src="https://github.com/user-attachments/assets/274f3709-3e61-4e5e-85be-2075e5c9244c" />
+***Note:*** 
+The black 10k bussed resistor is used as the pull-up (the logic is inverted in the code due to this), and the yellow resistor is an isolated 270 ohm resistor. If you don’t have this, you can use 4 individual 270 ohm resistors in line with the LEDs.
+
+<img width="409" height="347" alt="image" src="https://github.com/user-attachments/assets/7496446c-fad9-4aea-b754-8b79d10461ea" />
+
+
