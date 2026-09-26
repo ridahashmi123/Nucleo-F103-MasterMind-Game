@@ -25,6 +25,9 @@ The code was uploaded to the board using Keil µVision 5.0.
 | **DIP Switch 0** | PB8           | Input Bit 0 (LSB)           |
 | **DIP Switch 1** | PB9           | Input Bit 1                 |
 
+## Pinout Reference Sheet:
+<p align="center"> <img width="405" height="353" alt="image" src="https://github.com/user-attachments/assets/f667dffe-31be-47fb-b821-ae15ffff7445" /> </p>
+
 ## Gameplay Overview
 When the board starts it generates a new four‑digit secret code. Each digit is a nibble between 0x0 and
 0xF (0–15). **The player has up to 10 guesses to determine the secret**.
