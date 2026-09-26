@@ -5,6 +5,8 @@ This repository contains a simple, single‑player Mastermind style game impleme
 ## Author
 This game was implemented by Rida Hashmi for ENSE 352 (Computer Systems Architecture) at the University of Regina. The code in this repository is provided for educational use.
 
+Project Grade Awarded: 100%.
+
 ## Hardware Requirements
 To run this game you will need the following:
 * **Microcontroller** – An STM32 Nucleo‑F103 board (or any STM32F103 with similar GPIO availability).
