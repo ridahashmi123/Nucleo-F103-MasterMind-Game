@@ -77,6 +77,6 @@ DIP switches do not short the pins directly to ground or VDD.
 The black 10k bussed resistor is used as the pull-up (the logic is inverted in the code due to this), and the yellow resistor is an isolated 270 ohm resistor. If you don’t have this, you can use 4 individual 270 ohm resistors in line with the LEDs.
 
 
-<img width="818" height="694" alt="image" src="https://github.com/user-attachments/assets/7496446c-fad9-4aea-b754-8b79d10461ea" />
+<img width="718" height="594" alt="image" src="https://github.com/user-attachments/assets/7496446c-fad9-4aea-b754-8b79d10461ea" />
 
 
