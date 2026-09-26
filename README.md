@@ -72,8 +72,10 @@ runs at a different speed you may need to adjust the delay_cycles() counts.
 DIP switches do not short the pins directly to ground or VDD.
 
 <img width="344" height="224" alt="image" src="https://github.com/user-attachments/assets/274f3709-3e61-4e5e-85be-2075e5c9244c" />
+
 ***Note:*** 
 The black 10k bussed resistor is used as the pull-up (the logic is inverted in the code due to this), and the yellow resistor is an isolated 270 ohm resistor. If you don’t have this, you can use 4 individual 270 ohm resistors in line with the LEDs.
+
 
 <img width="409" height="347" alt="image" src="https://github.com/user-attachments/assets/7496446c-fad9-4aea-b754-8b79d10461ea" />
 
