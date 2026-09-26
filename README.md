@@ -2,20 +2,20 @@
 
 This repository contains a simple, single‑player Mastermind style game implementation for a STM32 Nucleo‑F103 microcontroller. The goal of the game is to guess a secret sequence of four hexadecimal digits (0–F) using a set of four DIP switches and to interpret feedback presented via LEDs and a push button. A linear feedback shift register (PRNG) generates a new secret code each round. The project was built for the ENSE 352 (Computer Systems Architecture) lab. It illustrates how to configure GPIO peripherals on an STM32, implement debouncing for inputs, and provide user feedback using simple LED patterns. No external libraries (other than the CMSIS headers) are required, and the main.c and main.h files included are sufficient for running the project.
 
-##Author
+## Author
 This game was implemented by Rida Hashmi for ENSE 352 (Computer Systems Architecture) at the University of Regina. The code in this repository is provided for educational use.
 
-##Hardware Requirements
+## Hardware Requirements
 To run this game you will need the following:
 * Microcontroller – An STM32 Nucleo‑F103 board (or any STM32F103 with similar GPIO availability).
 * DIP switches – Four SPST DIP switches wired to the microcontroller’s GPIOB pins.
 * LEDs – Four LEDs connected to GPIOA and GPIOB pins via suitable resistors.
 * Wiring Equipment – wires to connect to the Nucleo-F103 board and the breadboard and a 10k pull-up resistor
 
-##Software Requirements
+## Software Requirements
 The code was uploaded to the board using Keil µVision 5.0.
 
-###Pin Mapping
+### Pin Mapping
 | **Component**    | **STM32 Pin** | **Purpose / Bit Position** |
 |------------------|---------------|-----------------------------|
 | **D0 LED**       | PA0           | Bit 0 (LSB)                 |
@@ -25,11 +25,11 @@ The code was uploaded to the board using Keil µVision 5.0.
 | **DIP Switch 0** | PB8           | Input Bit 0 (LSB)           |
 | **DIP Switch 1** | PB9           | Input Bit 1                 |
 
-##Gameplay Overview
+## Gameplay Overview
 When the board starts it generates a new four‑digit secret code. Each digit is a nibble between 0x0 and
 0xF (0–15). The player has up to 10 guesses to determine the secret.
 
-##Entering a guess
+## Entering a guess
 1. Prepare a digit – Position the four DIP switches to represent your guess nibble. The binary value
 of the switches is read with PB8 as the least‑significant bit and PB4 as the most‑significant bit.
 2. Confirm the digit – Press the blue user button (PC13). The current LED pattern shows which
@@ -41,7 +41,7 @@ released (debouncing occurs automatically).
    * For the first digit (index 0) LED D3 is lit (1000), then the pattern builds up to 1111 for the
 fourth digit. This acts as a cursor showing which digit you are currently entering.
 
-##Feedback Interpretation
+## Feedback Interpretation
 After you have confirmed all four digits, the program compares your guess with the secret code and
 provides feedback through the LEDs:
 * Solid LEDs (lit) – Indicate the number of digits that are correct and in the correct position. For
@@ -52,7 +52,7 @@ digits are in the right place and one digit is present in the secret but in a di
 The game waits in this feedback state until you press the user button. Once pressed and released, the
 LEDs turn off and you may begin entering your next guess.
 
-##Winning and losing
+## Winning and losing
 * Win – If all four digits are correct in the correct positions, all LEDs blink together four times.
 Then the LEDs display your guess count in binary. Press the button once more to start a new
 round.
